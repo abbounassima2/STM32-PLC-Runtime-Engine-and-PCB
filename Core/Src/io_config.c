@@ -22,10 +22,7 @@ PinMap_t dout_map[NUM_DOUT] = {
     {TYPE_DOUT, GPIOA, GPIO_PIN_10, 0, 5, "dout6"},
     {TYPE_DOUT, GPIOA, GPIO_PIN_12, 0, 6, "dout7"},
     {TYPE_DOUT, GPIOC, GPIO_PIN_12, 0, 7, "dout8"},
-    /* NOTE (carried over from original code, not fixed here):
-     * dout4 and dout8 both map to GPIOC/GPIO_PIN_12. Confirm whether
-     * this is intentional (two logical channels driving one physical
-     * pin) or a copy/paste error before relying on dout8. */
+
 };
 
 /* Analog inputs */

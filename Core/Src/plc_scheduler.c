@@ -32,8 +32,8 @@ void OB100(void)
 
 void scan(void)
 {
-    update_physical_pins();   /* no-op unless PLC_SIMULATION is defined */
-    update_input();           /* real hardware read - see Finding #1 fix */
+    update_physical_pins();   // for simulated behavior
+    update_input();           // real physical pins
     OB1_User();
     update_output();
 }
@@ -53,14 +53,7 @@ void OB1(void)
     last_scan_time = HAL_GetTick() - cycle_start;
 
     if (last_scan_time < MIN_SCAN_TIME_MS) {
-        /*
-         * NOTE (see header comment / ADR-1): this padding is currently
-         * moot in practice because the caller (state_machine) also
-         * applies its own fixed osDelay(100). Left as-is pending your
-         * decision on ADR-1 - do not "helpfully" remove just one side
-         * of this without the other, or cycle timing changes in a way
-         * that hasn't been reviewed.
-         */
+
         osDelay(MIN_SCAN_TIME_MS - last_scan_time);
     }
 }
@@ -78,11 +71,7 @@ void state_machine(void *argument)
     (void)argument;
 
     for (;;) {
-        /*
-         * NOTE: hardcoded true, so STOP is currently unreachable from
-         * here - see header comment. Replace with a real debounced
-         * Start/Stop input once the GPIOC5/PC6 conflict is resolved.
-         */
+
         uint8_t Q = 1;
 
         previous_mode = current_mode;
@@ -114,7 +103,7 @@ void state_machine(void *argument)
                 break;
         }
 
-        osDelay(100); /* see ADR-1 in the header comment */
+        osDelay(100);
     }
 }
 

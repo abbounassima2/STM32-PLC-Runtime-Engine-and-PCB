@@ -6,19 +6,6 @@
  * Owns PLC mode (STOP/STARTUP/RUN) and the scan cycle. This is the
  * "platform" core - it should not need to change when you write a
  * different control application (that goes in user_program.c).
- *
- * KNOWN OPEN ISSUE, NOT SILENTLY CHANGED HERE (see analysis Finding #2
- * and #3 / ADR-1):
- *   - Two timing mechanisms currently coexist: the internal
- *     MIN/MAX_SCAN_TIME_MS pacing inside OB1(), and a fixed osDelay(100)
- *     in the state_machine task body. Until ADR-1 is actioned, real
- *     cycle time is governed by the osDelay(100), not by the pacing
- *     logic in OB1(). Left in place because changing it is a real
- *     behavioral change you should sign off on, not a "cleanup."
- *   - Start/Stop is currently hardcoded (Q=1 every cycle -> STOP is
- *     unreachable). Left in place for the same reason - wiring a real
- *     input requires resolving the GPIOC5/PC6 conflict noted in the
- *     analysis, which is a hardware decision, not a code-cleanliness one.
  */
 
 #include <stdint.h>

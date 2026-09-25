@@ -1,14 +1,5 @@
 #ifndef BOARD_H
 #define BOARD_H
-/*
- * board.h
- * -------
- * Shared HAL peripheral handles. Defined once in main.c, declared
- * extern everywhere else that needs them. This replaces the previous
- * pattern of every file re-declaring "ADC_HandleTypeDef hadc1;" etc,
- * which is what made final_plc.c / final_plc.h impossible to both
- * #include safely (duplicate definitions).
- */
 
 #include "main.h"
 

@@ -18,7 +18,7 @@ void update_input(void)
         DI_table[i] = (uint8_t)HAL_GPIO_ReadPin(din_map[i].port, din_map[i].pin);
     }
 
-    /* Analog inputs - reconfigure + convert one channel at a time */
+    /* Analog inputs */
     for (int i = 0; i < NUM_AIN; i++) {
         ADC_ChannelConfTypeDef sConfig = {0};
         sConfig.Channel = ain_map[i].channel;
@@ -34,7 +34,7 @@ void update_input(void)
         if (HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK) {
             AI_table[i] = (uint16_t)HAL_ADC_GetValue(&hadc1);
         } else {
-            AI_table[i] = 0; /* fallback on timeout */
+            AI_table[i] = 0;
         }
         HAL_ADC_Stop(&hadc1);
     }
@@ -69,15 +69,6 @@ void update_output(void)
 
     To_DAC();
 
-    /*
-     * TODO (flagged, not fixed here - see analysis Finding #4):
-     * this printf() -> HAL_UART_Transmit(..., HAL_MAX_DELAY) is a
-     * BLOCKING, UNBOUNDED call inside the scan cycle. If UART4 ever
-     * stalls, the whole scan cycle hangs. Move this to a queued /
-     * non-blocking Diagnostics Manager before shipping to real
-     * hardware. Left as-is here since changing it changes runtime
-     * behavior and wasn't part of the agreed low-risk fix set.
-     */
     printf(
         "[PLC] Mode=%s  AI1=%u   PID_OUT=%u  AQ2=%u  Alarm=%u  Count=%u  Scan_time=%lu ms,OB80_flag=%d\r\n",
         mode_names[current_mode],

@@ -1,7 +1,7 @@
 /*
  * user_program.c
  * ===============
- * >>> THIS IS THE FILE YOU EDIT TO WRITE YOUR PLC PROGRAM. <<<
+ * >>> THIS IS THE FILE TO EDIT TO WRITE THE PLC PROGRAM. <<<
  *
  * Everything else in src/ and inc/ is platform/runtime code that
  * shouldn't normally need to change when you write a new control
@@ -9,7 +9,7 @@
  * example level-sensor-alarm and PID logic live, and where you'd add
  * or replace logic for your own machine.
  *
- * Available to you here:
+ * Available here:
  *   - Tag macros from process_image.h: din1..din8, dout1..dout8,
  *     ain1..ain4, aout1..aout4
  *   - Function blocks from api.h: TON, TOF, TP, CTU, CTD, CTUD,
@@ -61,25 +61,19 @@ void OB1_User(void)
 
     /* Count each time the alarm activates (rising edge handled inside CTU). */
     CTU(ctu, alarm_delay.Q, /*reset=*/din2, 9999);
-    count = (uint8_t)ctu.CV;  /* NOTE: CV is int32_t and can reach 9999;
-                                 count is uint8_t and will wrap past 255.
-                                 Left as original behavior - widen count's
-                                 type if you need the full range. */
+    count = (uint8_t)ctu.CV;
 }
 
 void OB30_User(void)
 {
     bool eno;
 
-    /* Setpoint 300 (engineering units), input = scaled level, Kp=2, Ti=10, Td=0 */
     PID_COMPACT(pid, /*EN=*/1, /*SP=*/300, /*PV=*/scaled_value,
                 /*Kp=*/2, /*Ti=*/10, /*Td=*/0,
                 /*OUT=*/aout2, /*ENO=*/eno);
     (void)eno;
 
-    /* aout1: properly rescaled 0..4095 for the DAC (fix for Finding #6 -
-     * the original code wrote the raw 0..100 PID output directly to
-     * aout1, which meant it never exceeded ~2.4% of full scale). */
+
     aout1 = UNSCALE_X(pid.Output);
 
     dout1 = (pid.Output > 90.0f) ? 1 : 0;  /* high-output indicator */
@@ -87,8 +81,5 @@ void OB30_User(void)
 
 void OB80_User(void)
 {
-    /* Called from the TIM2 scan-overrun ISR path (see plc_scheduler.c).
-     * Keep this SHORT - it runs in interrupt context. Currently a
-     * placeholder; add a diagnostics report here once the Diagnostics
-     * Manager exists (see analysis). */
+
 }

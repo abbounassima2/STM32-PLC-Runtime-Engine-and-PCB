@@ -53,7 +53,7 @@ void PLC_Retentive_Save(void)
 
 void PLC_Retentive_Load(void)
 {
-    if (*((uint32_t *)FLASH_RETENTIVE_ADDR) == 0xFFFFFFFF) return; /* nothing saved yet */
+    if (*((uint32_t *)FLASH_RETENTIVE_ADDR) == 0xFFFFFFFF) return;
 
     uint8_t buf[RETENTIVE_BUF_SIZE];
     memcpy(buf, (const void *)FLASH_RETENTIVE_ADDR, RETENTIVE_BUF_SIZE);
