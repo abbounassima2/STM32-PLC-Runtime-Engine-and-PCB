@@ -28,7 +28,17 @@ The long-term architecture is based on separating the **permanent PLC runtime** 
 The following logs demonstrate PLC operating-mode transitions,
 power recovery handling, and runtime execution.
 
-<img width="800" height="643" alt="image" src="https://github.com/user-attachments/assets/07540d29-cd8a-40ad-a0b9-ed906f1b3bc7" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bd2e27c8-cb70-44ff-9a3c-042192690956"
+       width="600"
+       alt="PLC Runtime Log 1">
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f52798c1-152f-4561-ad1e-5eb5e12b8dbf"
+       width="600"
+       alt="PLC Runtime Log 2">
+</p>
 
 
 ## I/O Mapping Architecture
@@ -37,10 +47,8 @@ The following diagrams illustrate the input reading and output
 writing processes, including hardware-to-process-image mapping.
 
 <p align="center">
-  <img src="images/<img width="800" height="643" alt="image" src="https://github.com/user-attachments/assets/47ae3f9d-df16-4146-83c8-283ea7eb489a" />
-" width="90%">
+  <img src="https://github.com/user-attachments/assets/07540d29-cd8a-40ad-a0b9-ed906f1b3bc7"
+       width="500"
+       alt="PLC Architecture">
 </p>
 
----
-
-## Project Goal
