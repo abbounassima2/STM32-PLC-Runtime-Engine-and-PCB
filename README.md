@@ -28,13 +28,8 @@ The long-term architecture is based on separating the **permanent PLC runtime** 
 The following logs demonstrate PLC operating-mode transitions,
 power recovery handling, and runtime execution.
 
-<p align="center">
-  <img src="images/plc-power-recovery.png" width="85%">
-</p>
+<img width="800" height="643" alt="image" src="https://github.com/user-attachments/assets/07540d29-cd8a-40ad-a0b9-ed906f1b3bc7" />
 
-<p align="center">
-  <img src="images/" width="85%">
-</p>
 
 ## I/O Mapping Architecture
 
