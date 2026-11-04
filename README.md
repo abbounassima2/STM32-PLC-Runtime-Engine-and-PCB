@@ -23,30 +23,28 @@ The main objective is to develop an embedded PLC platform capable of providing t
 
 The long-term architecture is based on separating the **permanent PLC runtime** from the **user program**, providing the foundation for a configurable and programmable embedded PLC.
 
+## Runtime Execution and Validation
+
+The following logs demonstrate PLC operating-mode transitions,
+power recovery handling, and runtime execution.
+
+<p align="center">
+  <img src="images/plc-power-recovery.png" width="85%">
+</p>
+
+<p align="center">
+  <img src="images/plc-runtime-monitoring.png" width="85%">
+</p>
+
+## I/O Mapping Architecture
+
+The following diagrams illustrate the input reading and output
+writing processes, including hardware-to-process-image mapping.
+
+<p align="center">
+  <img src="images/plc-io-mapping.png" width="90%">
+</p>
+
 ---
 
-## System Architecture
-
-```text
-                  PLC User Program
-                         │
-                         ▼
-              ┌─────────────────────┐
-              │    PLC Runtime       │
-              │                      │
-              │  Scheduler           │
-              │  Operating Modes     │
-              │  Process Image       │
-              │  I/O Management      │
-              │  Retentive Memory    │
-              │  Error Handling      │
-              │  Communication       │
-              └──────────┬───────────┘
-                         │
-                         ▼
-                    STM32F407
-                         │
-             ┌───────────┼───────────┐
-             ▼           ▼           ▼
-          Digital      Analog      RS485 /
-             I/O         I/O       Modbus
+## Project Goal
