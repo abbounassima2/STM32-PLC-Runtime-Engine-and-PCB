@@ -33,7 +33,7 @@ power recovery handling, and runtime execution.
 </p>
 
 <p align="center">
-  <img src="images/plc-runtime-monitoring.png" width="85%">
+  <img src="images/" width="85%">
 </p>
 
 ## I/O Mapping Architecture
@@ -42,7 +42,8 @@ The following diagrams illustrate the input reading and output
 writing processes, including hardware-to-process-image mapping.
 
 <p align="center">
-  <img src="images/plc-io-mapping.png" width="90%">
+  <img src="images/<img width="800" height="643" alt="image" src="https://github.com/user-attachments/assets/47ae3f9d-df16-4146-83c8-283ea7eb489a" />
+" width="90%">
 </p>
 
 ---
